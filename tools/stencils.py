@@ -11,7 +11,9 @@ badge or edge style missing from those tables is an error, so neither side can d
 """
 
 import argparse
+import html
 import importlib.util
+import math
 import re
 import sys
 from pathlib import Path
@@ -22,6 +24,8 @@ README = ROOT / "README.md"
 OUT = ROOT / "docs" / "stencils"
 START, END = "<!-- stencils:start -->", "<!-- stencils:end -->"
 PAD = 12  # white margin around each stencil image
+# added to a table's widest image for its image column: GitHub's cell padding (13px a side) and borders
+CELL_PAD = 28
 
 
 def _load_generator():
@@ -65,7 +69,10 @@ def _reference(eip) -> tuple[list[tuple[str, list[tuple[str, str]]]], dict[str, 
     sections = [(h3, [(_code(r[0]), r[3]) for r in rows]) for h2, h3, rows in spec if h2 == "Node kinds"]
     badges = {_code(r[0]): r[2] for h2, _, rows in spec if h2 == "Badges" for r in rows}
     edges = {
-        ":".join(_code(part) for part in r[0].split("+")): r[2] for h2, _, rows in notation if h2 == "Edges" for r in rows
+        ":".join(_code(part) for part in r[0].split("+")): r[2]
+        for h2, _, rows in notation
+        if h2 == "Edges"
+        for r in rows
     }
     kinds = [k for _, rows in sections for k, _ in rows]
     problems = []
@@ -93,42 +100,72 @@ def _edge_syntax(key: str) -> str:
     return f'`"kind": "{key}"`'
 
 
+def _html(text: str) -> str:
+    """Markdown `code` spans to <code>, the rest escaped: GitHub does not parse Markdown inside an HTML table."""
+    parts = text.split("`")
+    if len(parts) % 2 == 0:
+        sys.exit(f"error: unbalanced backticks in reference text: {text}")
+    return "".join(
+        f"<code>{html.escape(p, quote=False)}</code>" if i % 2 else html.escape(p, quote=False)
+        for i, p in enumerate(parts)
+    )
+
+
+def _table(head: tuple[str, str, str], rows: list[tuple[str, int, str, str]]) -> list[str]:
+    """HTML table whose image column is as wide as its widest image, so GitHub cannot shrink the stencils."""
+    width = max(w for _, w, _, _ in rows) + CELL_PAD
+    out = ["<table>", f'<tr><th width="{width}">{head[0]}</th><th>{head[1]}</th><th>{head[2]}</th></tr>']
+    out += [f"<tr><td>{img}</td><td>{name}</td><td>{text}</td></tr>" for img, _, name, text in rows]
+    return [*out, "</table>", ""]
+
+
 def _render(eip) -> tuple[dict[str, str], str]:
     """Stencil SVGs by file name, and the README text between the markers."""
     sections, badge_use, edge_means = _reference(eip)
     items = {item["id"]: item for item in eip.build_library()["libraryItems"]}
     svgs: dict[str, str] = {}
 
-    def image(item_id: str) -> str:
+    def image(item_id: str) -> tuple[str, int]:
         item = items[item_id]
-        svgs[f"{item_id}.svg"] = eip.render_svg({"elements": item["elements"]}, pad=PAD)
-        return f"![{item['name']}](docs/stencils/{item_id}.svg)"
+        svg = eip.render_svg({"elements": item["elements"]}, pad=PAD)
+        svgs[f"{item_id}.svg"] = svg
+        width = math.ceil(float(re.search(r'width="([\d.]+)"', svg)[1]))
+        alt = html.escape(item["name"])
+        return f'<img src="docs/stencils/{item_id}.svg" alt="{alt}">', width
+
+    def row(item_id: str, name: str, code: str, text: str) -> tuple[str, int, str, str]:
+        img, width = image(item_id)
+        return img, width, f"<b>{html.escape(name, quote=False)}</b><br>{_html(code)}", _html(text)
 
     aliases: dict[str, list[str]] = {}
     for alias, kind in eip.ALIASES.items():
         aliases.setdefault(kind, []).append(alias)
     lines: list[str] = []
-    for title, rows in sections:
-        lines += [f"### {title}", "", "| Stencil | Kind | Use when |", "|---|---|---|"]
-        for kind, use in rows:
-            names = " or ".join(f"`{k}`" for k in [kind, *aliases.get(kind, [])])
-            lines.append(f"| {image(f'eip-{kind}')} | **{eip.CATALOGUE[kind].eip_name}**<br>{names} | {use} |")
-        lines.append("")
+    for title, kinds in sections:
+        rows = [
+            row(
+                f"eip-{kind}",
+                eip.CATALOGUE[kind].eip_name,
+                " or ".join(f"`{k}`" for k in [kind, *aliases.get(kind, [])]),
+                use,
+            )
+            for kind, use in kinds
+        ]
+        lines += [f"### {title}", "", *_table(("Stencil", "Kind", "Use when"), rows)]
+    rows = [row(f"eip-badge-{b}", name, f"`{b}`", badge_use[b]) for b, name in eip.BADGES.items()]
     lines += [
         "### Badges",
         "",
         'Pills on a `service` or `external-system` node, e.g. `"badges": ["idempotent", "competing:3"]`.',
         "",
-        "| Stencil | Badge | Use when |",
-        "|---|---|---|",
+        *_table(("Stencil", "Badge", "Use when"), rows),
     ]
-    for badge, name in eip.BADGES.items():
-        lines.append(f"| {image(f'eip-badge-{badge}')} | **{name}**<br>`{badge}` | {badge_use[badge]} |")
-    lines += ["", "### Arrows", "", "| Stencil | Edge | Means |", "|---|---|---|"]
-    for key, style in eip.EDGE_KINDS.items():
-        slug = key.replace(":", "-")
-        lines.append(f"| {image(f'eip-edge-{slug}')} | **{style.name}**<br>{_edge_syntax(key)} | {edge_means[key]} |")
-    return svgs, "\n".join(lines)
+    rows = [
+        row(f"eip-edge-{key.replace(':', '-')}", style.name, _edge_syntax(key), edge_means[key])
+        for key, style in eip.EDGE_KINDS.items()
+    ]
+    lines += ["### Arrows", "", *_table(("Stencil", "Edge", "Means"), rows)]
+    return svgs, "\n".join(lines).rstrip("\n")
 
 
 def main(argv=None) -> int:
