@@ -461,3 +461,26 @@ test(
     });
   },
 );
+
+test("PNG export failure exits 3 and keeps the scene", () => {
+  withTempDir((dir) => {
+    const spec = path.join(dir, "good.spec.json");
+    fs.writeFileSync(spec, readText(EXAMPLE));
+    const missing = path.join(dir, "no-such-chrome");
+    const saved = process.env.CHROME;
+    process.env.CHROME = missing;
+    try {
+      const run = runCaptured(["build", spec, "--no-svg", "--png"]);
+      assert.equal(run.code, 3);
+      assert.ok(
+        run.stderr.includes(`error: png export failed: CHROME points at ${missing}, which does not exist`),
+        run.stderr,
+      );
+    } finally {
+      if (saved === undefined) delete process.env.CHROME;
+      else process.env.CHROME = saved;
+    }
+    assert.ok(fs.existsSync(path.join(dir, "good.excalidraw")));
+    assert.ok(!fs.existsSync(path.join(dir, "good.png")));
+  });
+});
