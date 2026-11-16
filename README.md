@@ -2,9 +2,9 @@
 
 Excalidraw architecture diagrams in Hohpe & Woolf Enterprise Integration Patterns notation, generated from a small JSON spec by a stdlib-only Python script: a preview SVG, strict layout checks, and a real Excalidraw PNG export. It is packaged as the Agent Skill `excalidraw-architecture`, so a coding agent can draw, check and fix a diagram on its own.
 
-![Order flow example](skills/excalidraw-architecture/examples/order-flow.svg)
+![Order placed: Order Service publishes OrderPlaced through a transactional outbox to the orders.placed pub-sub channel, which fans out to Billing and Shipping, dead-letters to orders.placed.dlq, and is wire-tapped into an Audit store](docs/fan-out.png)
 
-A real-world set drawn with it: the [ankusa diagrams](https://github.com/jamescarr/ankusa/tree/main/docs/diagrams).
+That diagram is built from the 6-node spec [`docs/fan-out.spec.json`](docs/fan-out.spec.json). The larger example, [order flow](skills/excalidraw-architecture/examples/order-flow.svg) (17 nodes: a saga with request-reply, a content-based router, two frames, a legend), is wider than this page, so open it to read it. A real-world set drawn with it: the [ankusa diagrams](https://github.com/jamescarr/ankusa/tree/main/docs/diagrams).
 
 ## Install
 
@@ -69,6 +69,9 @@ uv sync
 uv run pytest -q
 uv run agentskills validate skills/excalidraw-architecture
 claude plugin validate .
+
+# rebuild the README diagram after changing its spec or the generator
+python3 skills/excalidraw-architecture/scripts/eip_excalidraw.py build docs/fan-out.spec.json --no-svg --strict --png
 ```
 
 ## License

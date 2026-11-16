@@ -1,0 +1,18 @@
+{
+  "title": "Order placed — publish-subscribe fan-out",
+  "legend": false,
+  "nodes": [
+    {"id": "orders", "kind": "service", "label": "Order Service", "badges": ["tx", "outbox"]},
+    {"id": "orders.placed", "kind": "pubsub-channel", "label": "orders.placed", "sub": "Kafka topic", "tags": ["key=orderId"]},
+    {"id": "orders.placed.dlq", "kind": "dead-letter-channel", "label": "orders.placed.dlq", "shadow": "orders.placed"},
+    {"id": "billing", "kind": "service", "label": "Billing", "badges": ["idempotent", "competing:3"]},
+    {"id": "shipping", "kind": "service", "label": "Shipping", "badges": ["idempotent", "durable"]},
+    {"id": "audit", "kind": "message-store", "label": "Audit store"}
+  ],
+  "edges": [
+    {"from": "orders", "to": "orders.placed", "type": "event", "message": "OrderPlaced"},
+    {"from": "orders.placed", "to": "billing", "type": "event", "message": "OrderPlaced"},
+    {"from": "orders.placed", "to": "shipping", "type": "event", "message": "OrderPlaced"},
+    {"from": "orders.placed", "to": "audit", "kind": "tap"}
+  ]
+}
