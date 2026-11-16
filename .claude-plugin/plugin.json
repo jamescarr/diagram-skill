@@ -1,0 +1,9 @@
+{
+  "name": "diagram-skill",
+  "description": "Draw software architecture and message flows as Excalidraw diagrams in Enterprise Integration Patterns notation from a small JSON spec.",
+  "version": "1.0.0",
+  "author": { "name": "James Carr", "url": "https://github.com/jamescarr" },
+  "repository": "https://github.com/jamescarr/diagram-skill",
+  "license": "MIT",
+  "keywords": ["excalidraw", "architecture", "diagrams", "eip", "messaging"]
+}

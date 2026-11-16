@@ -1,0 +1,44 @@
+{
+  "title": "Order placement — message flow",
+  "legend": true,
+  "groups": [
+    {"id": "orders-ctx", "label": "Orders bounded context", "kind": "context"},
+    {"id": "kafka", "label": "Kafka", "kind": "broker"}
+  ],
+  "nodes": [
+    {"id": "customer", "kind": "actor", "label": "Customer"},
+    {"id": "orders", "kind": "service", "label": "Order Service", "badges": ["gateway", "tx", "outbox"], "group": "orders-ctx"},
+    {"id": "orders-db", "kind": "datastore", "label": "orders (Postgres)", "group": "orders-ctx"},
+    {"id": "orders.placed", "kind": "pubsub-channel", "label": "orders.placed", "sub": "Kafka topic", "tags": ["key=orderId", "12 partitions"], "group": "kafka"},
+    {"id": "orders.placed.dlq", "kind": "dead-letter-channel", "label": "orders.placed.dlq", "shadow": "orders.placed", "group": "kafka"},
+    {"id": "payments.cmd", "kind": "p2p-channel", "label": "payments.cmd", "sub": "Kafka topic", "tags": ["key=orderId"]},
+    {"id": "orders.reply", "kind": "p2p-channel", "label": "orders.reply", "sub": "Kafka topic", "tags": ["key=orderId"]},
+    {"id": "saga", "kind": "process-manager", "label": "Order Saga", "sub": "timeout 15 min · dedupe by orderId"},
+    {"id": "payments", "kind": "service", "label": "Payment Service", "badges": ["idempotent", "competing:3"]},
+    {"id": "fulfilment", "kind": "service", "label": "Fulfilment Service", "badges": ["idempotent", "durable", "competing:3"]},
+    {"id": "region-router", "kind": "content-based-router", "label": "by region"},
+    {"id": "ship.eu", "kind": "p2p-channel", "label": "ship.eu", "sub": "Kafka topic · DLQ ship.dlq (not drawn)", "tags": ["key=orderId"]},
+    {"id": "ship.us", "kind": "p2p-channel", "label": "ship.us", "sub": "Kafka topic · DLQ ship.dlq (not drawn)", "tags": ["key=orderId"]},
+    {"id": "carrier-eu", "kind": "external-system", "label": "EU Carrier API"},
+    {"id": "carrier-us", "kind": "external-system", "label": "US Carrier API"},
+    {"id": "audit", "kind": "message-store", "label": "Audit store"},
+    {"id": "agg-note", "kind": "note", "label": "Completes on PaymentAuthorized or after 15 min → compensates. No DLQ on payments.cmd / orders.reply: a lost message ends in the timeout.", "attach": "saga"}
+  ],
+  "edges": [
+    {"from": "customer", "to": "orders", "kind": "rpc", "message": "POST /orders", "seq": 1},
+    {"from": "orders", "to": "orders-db", "kind": "data", "label": "writes"},
+    {"from": "orders", "to": "orders.placed", "type": "event", "message": "OrderPlaced", "seq": 2},
+    {"from": "orders.placed", "to": "saga", "type": "event", "message": "OrderPlaced"},
+    {"from": "orders.placed", "to": "fulfilment", "type": "event", "message": "OrderPlaced"},
+    {"from": "orders.placed", "to": "region-router", "type": "event", "message": "OrderPlaced"},
+    {"from": "region-router", "to": "ship.eu", "type": "document", "message": "Shipment", "label": "region = EU"},
+    {"from": "region-router", "to": "ship.us", "type": "document", "message": "Shipment", "label": "region = US"},
+    {"from": "ship.eu", "to": "carrier-eu", "type": "document", "message": "Shipment"},
+    {"from": "ship.us", "to": "carrier-us", "type": "document", "message": "Shipment"},
+    {"from": "orders.placed", "to": "audit", "kind": "tap"},
+    {"from": "saga", "to": "payments.cmd", "type": "command", "message": "AuthorizePayment", "seq": 3, "reply_to": "orders.reply", "correlation": true, "ttl": "30s"},
+    {"from": "payments.cmd", "to": "payments", "type": "command", "message": "AuthorizePayment"},
+    {"from": "payments", "to": "orders.reply", "type": "reply", "message": "PaymentAuthorized", "correlation": true, "seq": 4},
+    {"from": "orders.reply", "to": "saga", "type": "reply", "message": "PaymentAuthorized"}
+  ]
+}

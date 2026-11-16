@@ -1,0 +1,12 @@
+{
+  "name": "jamescarr-skills",
+  "description": "Skills by James Carr",
+  "owner": { "name": "James Carr", "url": "https://github.com/jamescarr" },
+  "plugins": [
+    {
+      "name": "diagram-skill",
+      "source": "./",
+      "description": "Excalidraw architecture diagrams in EIP notation from a JSON spec (skill: excalidraw-architecture)."
+    }
+  ]
+}
