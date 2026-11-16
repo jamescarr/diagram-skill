@@ -7,10 +7,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: "22" }
-      - uses: astral-sh/setup-uv@v5
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        # newest stable release from actions/node-versions; `latest` would pick a nodejs.org prerelease
+        with: { node-version: "*", check-latest: true }
+      - uses: astral-sh/setup-uv@v10.3.3
         with: { python-version: "3.12" }
       - run: uv sync
       - run: uv run agentskills validate skills/excalidraw-architecture
