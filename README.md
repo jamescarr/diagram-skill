@@ -1,6 +1,6 @@
 # diagram-skill
 
-Excalidraw architecture diagrams in Hohpe & Woolf Enterprise Integration Patterns notation, generated from a small JSON spec by a stdlib-only Python script: a preview SVG, strict layout checks, and a real Excalidraw PNG export. It is packaged as the Agent Skill `excalidraw-architecture`, so a coding agent can draw, check and fix a diagram on its own.
+Excalidraw architecture diagrams in Hohpe & Woolf Enterprise Integration Patterns notation, generated from a small JSON spec by a dependency-free Node script: a preview SVG, strict layout checks, and a real Excalidraw PNG export. It is packaged as the Agent Skill `excalidraw-architecture`, so a coding agent can draw, check and fix a diagram on its own.
 
 ![Order placed: Order Service publishes OrderPlaced through a transactional outbox to the orders.placed pub-sub channel, which fans out to Billing and Shipping, dead-letters to orders.placed.dlq, and is wire-tapped into an Audit store](docs/fan-out.png)
 
@@ -44,20 +44,20 @@ Clone as above, then symlink or `cp -r` `skills/excalidraw-architecture` into `~
 
 ## Requirements
 
-- Building a diagram: python3 >= 3.12, stdlib only.
-- `--png`: node >= 22, Chrome or Chromium (`CHROME` overrides the lookup), and network access to esm.sh.
+- Node >= 22. Nothing to install: the generator has no dependencies.
+- `--png` also needs Chrome or Chromium (`CHROME` overrides the lookup) and network access to esm.sh.
 
 ## Use
 
 ```sh
 # the node kinds, endpoint badges, edge kinds and aliases the spec accepts
-python3 skills/excalidraw-architecture/scripts/eip_excalidraw.py kinds
+node skills/excalidraw-architecture/scripts/eip_excalidraw.mjs kinds
 
 # write <name>.excalidraw and <name>.svg; --png adds an Excalidraw-rendered PNG
-python3 skills/excalidraw-architecture/scripts/eip_excalidraw.py build <name>.spec.json --png
+node skills/excalidraw-architecture/scripts/eip_excalidraw.mjs build <name>.spec.json --png
 
 # validate and lay out without writing; warnings fail the run
-python3 skills/excalidraw-architecture/scripts/eip_excalidraw.py build <name>.spec.json --check --strict
+node skills/excalidraw-architecture/scripts/eip_excalidraw.mjs build <name>.spec.json --check --strict
 ```
 
 The agent workflow (inventory, level, spec, build, look, fix) is in [`SKILL.md`](skills/excalidraw-architecture/SKILL.md); the spec format is in [`references/spec.md`](skills/excalidraw-architecture/references/spec.md). Every shape a spec can ask for is in [Stencils](#stencils) below.
@@ -220,17 +220,17 @@ Pills on a `service` or `external-system` node, e.g. `"badges": ["idempotent", "
 ## Develop
 
 ```sh
-uv sync
-uv run pytest -q
-uv run agentskills validate skills/excalidraw-architecture
+node --test
 claude plugin validate .
+# the Agent Skills reference validator is a Python tool; CI runs it the same way (needs uv)
+uvx --from skills-ref agentskills validate skills/excalidraw-architecture
 
 # rebuild the README diagram after changing its spec or the generator
-python3 skills/excalidraw-architecture/scripts/eip_excalidraw.py build docs/fan-out.spec.json --no-svg --strict --png
+node skills/excalidraw-architecture/scripts/eip_excalidraw.mjs build docs/fan-out.spec.json --no-svg --strict --png
 
 # regenerate docs/stencils/ and the README's stencil tables after changing the generator or the
 # kind, badge and edge tables in references/spec.md and references/notation.md
-python3 tools/stencils.py
+node tools/stencils.mjs
 ```
 
 ## License

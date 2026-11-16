@@ -1,0 +1,9 @@
+{
+  "name": "diagram-skill",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Excalidraw architecture diagrams in EIP notation, as an installable Agent Skill",
+  "license": "MIT",
+  "engines": { "node": ">=22" },
+  "scripts": { "test": "node --test" }
+}

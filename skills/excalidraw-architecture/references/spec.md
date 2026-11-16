@@ -1,12 +1,12 @@
-# Spec reference — `eip_excalidraw.py`
+# Spec reference — `eip_excalidraw.mjs`
 
 The spec is a single JSON object. It is the source of truth: the `.excalidraw` scene, the preview SVG and the stencil library are all derived from it.
 
 ```
-python3 <skill-dir>/scripts/eip_excalidraw.py build examples/order-flow.spec.json
+node <skill-dir>/scripts/eip_excalidraw.mjs build examples/order-flow.spec.json
 ```
 
-`<skill-dir>` is the directory the skill is installed in (`skills/excalidraw-architecture` in the https://github.com/jamescarr/diagram-skill repo). The script is stdlib only and runs on Python 3.12+.
+`<skill-dir>` is the directory the skill is installed in (`skills/excalidraw-architecture` in the https://github.com/jamescarr/diagram-skill repo). The script needs Node 22 or later and has no dependencies.
 
 ## Contents
 
@@ -373,9 +373,9 @@ Other type and value errors use the same shapes: `nodes[3]: missing or invalid i
 ## CLI
 
 ```
-eip_excalidraw.py build SPEC [-o OUT.excalidraw] [--svg OUT.svg | --no-svg] [--check] [--strict]
-eip_excalidraw.py lib [-o library/eip.excalidrawlib] [--svg library/eip.svg]
-eip_excalidraw.py kinds
+node eip_excalidraw.mjs build SPEC [-o OUT.excalidraw] [--svg OUT.svg | --no-svg] [--png [OUT.png]] [--check] [--strict]
+node eip_excalidraw.mjs lib [-o library/eip.excalidrawlib] [--svg library/eip.svg]
+node eip_excalidraw.mjs kinds
 ```
 
 **build** — validate, lay out, write the scene and (by default) the preview.
@@ -383,7 +383,8 @@ eip_excalidraw.py kinds
 - `-o` defaults to the spec path with `.spec.json` or `.json` replaced by `.excalidraw`.
 - The SVG defaults next to the scene; `--no-svg` skips it.
 - `--check` validates and lays out, prints errors and warnings plus `ok: <m> nodes, <k> edges, <w> warnings`, writes nothing.
-- Exit `0` success; `1` warnings with `--strict`; `2` spec errors. Warnings are prefixed `warning: `.
+- `--png` also exports a PNG rendered by Excalidraw itself (default: next to the scene); see the skill's Build step.
+- Exit `0` success; `1` warnings with `--strict`; `2` spec or usage errors, or Node older than 22; `3` the PNG export failed (the scene was written). Warnings are prefixed `warning: `.
 - Success prints `wrote <out> (<n> elements, <m> nodes, <k> edges)` and `wrote <svg>`.
 
 **lib** — write the stencil library (`eip-<kind>`, `eip-badge-<badge>`, `eip-edge-<key with ':' replaced by '-'>`, 87 items) and its SVG index; prints `wrote <path> (87 items)` and `wrote <svg>`. Defaults to `<skill-dir>/library/`.
