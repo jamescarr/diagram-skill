@@ -70,7 +70,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 ### Messaging systems — channels
 
 <table>
-<tr><th width="232">Stencil</th><th>Kind</th><th>Use when</th></tr>
+<tr><th width="232">Stencil</th><th width="228">Kind</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-channel.svg" alt="Message Channel"></td><td><b>Message Channel</b><br><code>channel</code></td><td>A message moves between participants and p2p vs pub-sub is not yet decided.</td></tr>
 <tr><td><img src="docs/stencils/eip-p2p-channel.svg" alt="Point-to-Point Channel"></td><td><b>Point-to-Point Channel</b><br><code>p2p-channel</code> or <code>queue</code></td><td>Exactly one consumer handles each message.</td></tr>
 <tr><td><img src="docs/stencils/eip-pubsub-channel.svg" alt="Publish-Subscribe Channel"></td><td><b>Publish-Subscribe Channel</b><br><code>pubsub-channel</code> or <code>topic</code></td><td>Every subscriber receives every message.</td></tr>
@@ -84,7 +84,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 ### Message construction
 
 <table>
-<tr><th width="187">Stencil</th><th>Kind</th><th>Use when</th></tr>
+<tr><th width="187">Stencil</th><th width="171">Kind</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-message.svg" alt="Message"></td><td><b>Message</b><br><code>message</code></td><td>A message in flight where the type is not the point.</td></tr>
 <tr><td><img src="docs/stencils/eip-command-message.svg" alt="Command Message"></td><td><b>Command Message</b><br><code>command-message</code></td><td>One receiver, do this; imperative name.</td></tr>
 <tr><td><img src="docs/stencils/eip-document-message.svg" alt="Document Message"></td><td><b>Document Message</b><br><code>document-message</code></td><td>Here is data; noun name.</td></tr>
@@ -94,7 +94,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 ### Routing
 
 <table>
-<tr><th width="220">Stencil</th><th>Kind</th><th>Use when</th></tr>
+<tr><th width="220">Stencil</th><th width="253">Kind</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-content-based-router.svg" alt="Content-Based Router"></td><td><b>Content-Based Router</b><br><code>content-based-router</code> or <code>message-router</code></td><td>Route each message by payload or header rules.</td></tr>
 <tr><td><img src="docs/stencils/eip-message-filter.svg" alt="Message Filter"></td><td><b>Message Filter</b><br><code>message-filter</code></td><td>Drop messages a consumer does not want.</td></tr>
 <tr><td><img src="docs/stencils/eip-dynamic-router.svg" alt="Dynamic Router"></td><td><b>Dynamic Router</b><br><code>dynamic-router</code></td><td>Destinations are registered at runtime.</td></tr>
@@ -112,7 +112,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 ### Transformation
 
 <table>
-<tr><th width="204">Stencil</th><th>Kind</th><th>Use when</th></tr>
+<tr><th width="204">Stencil</th><th width="187">Kind</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-message-translator.svg" alt="Message Translator"></td><td><b>Message Translator</b><br><code>message-translator</code></td><td>Format or model changes between hops, typically at a bounded-context border.</td></tr>
 <tr><td><img src="docs/stencils/eip-envelope-wrapper.svg" alt="Envelope Wrapper"></td><td><b>Envelope Wrapper</b><br><code>envelope-wrapper</code></td><td>Transport metadata is added at the boundary and stripped at the other side.</td></tr>
 <tr><td><img src="docs/stencils/eip-content-enricher.svg" alt="Content Enricher"></td><td><b>Content Enricher</b><br><code>content-enricher</code></td><td>The message needs data fetched from elsewhere.</td></tr>
@@ -124,7 +124,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 ### Messaging endpoints
 
 <table>
-<tr><th width="220">Stencil</th><th>Kind</th><th>Use when</th></tr>
+<tr><th width="220">Stencil</th><th width="212">Kind</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-message-endpoint.svg" alt="Message Endpoint"></td><td><b>Message Endpoint</b><br><code>message-endpoint</code></td><td>A generic receive point; the endpoint style is not the point.</td></tr>
 <tr><td><img src="docs/stencils/eip-messaging-gateway.svg" alt="Messaging Gateway"></td><td><b>Messaging Gateway</b><br><code>messaging-gateway</code></td><td>Expose a domain interface over messaging (<code>orders.place(order)</code>).</td></tr>
 <tr><td><img src="docs/stencils/eip-messaging-mapper.svg" alt="Messaging Mapper"></td><td><b>Messaging Mapper</b><br><code>messaging-mapper</code></td><td>Map domain objects to and from messages.</td></tr>
@@ -143,7 +143,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 ### System management
 
 <table>
-<tr><th width="178">Stencil</th><th>Kind</th><th>Use when</th></tr>
+<tr><th width="178">Stencil</th><th width="162">Kind</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-wire-tap.svg" alt="Wire Tap"></td><td><b>Wire Tap</b><br><code>wire-tap</code></td><td>Copy messages to a side channel for audit or debugging.</td></tr>
 <tr><td><img src="docs/stencils/eip-detour.svg" alt="Detour"></td><td><b>Detour</b><br><code>detour</code></td><td>Route through extra steps switched on at runtime.</td></tr>
 <tr><td><img src="docs/stencils/eip-message-history.svg" alt="Message History"></td><td><b>Message History</b><br><code>message-history</code></td><td>Record each hop on the message.</td></tr>
@@ -155,7 +155,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 ### Messaging infrastructure
 
 <table>
-<tr><th width="220">Stencil</th><th>Kind</th><th>Use when</th></tr>
+<tr><th width="220">Stencil</th><th width="171">Kind</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-message-broker.svg" alt="Message Broker"></td><td><b>Message Broker</b><br><code>message-broker</code></td><td>The broker is a participant; keep it to hub routing, no business logic.</td></tr>
 <tr><td><img src="docs/stencils/eip-messaging-bridge.svg" alt="Messaging Bridge"></td><td><b>Messaging Bridge</b><br><code>messaging-bridge</code></td><td>Connect two brokers or broker clusters.</td></tr>
 <tr><td><img src="docs/stencils/eip-outbox.svg" alt="Transactional Outbox"></td><td><b>Transactional Outbox</b><br><code>outbox</code></td><td>Publish as part of the local transaction.</td></tr>
@@ -165,7 +165,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 ### Participants and stores
 
 <table>
-<tr><th width="232">Stencil</th><th>Kind</th><th>Use when</th></tr>
+<tr><th width="232">Stencil</th><th width="162">Kind</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-service.svg" alt="Application"></td><td><b>Application</b><br><code>service</code></td><td>A service or application you own.</td></tr>
 <tr><td><img src="docs/stencils/eip-external-system.svg" alt="External system"></td><td><b>External system</b><br><code>external-system</code> or <code>external</code></td><td>A system outside your control.</td></tr>
 <tr><td><img src="docs/stencils/eip-actor.svg" alt="Actor"></td><td><b>Actor</b><br><code>actor</code></td><td>A person or client.</td></tr>
@@ -180,7 +180,7 @@ One stencil per node kind, badge and arrow: what the generator draws, and what y
 Pills on a `service` or `external-system` node, e.g. `"badges": ["idempotent", "competing:3"]`.
 
 <table>
-<tr><th width="244">Stencil</th><th>Badge</th><th>Use when</th></tr>
+<tr><th width="244">Stencil</th><th width="162">Badge</th><th>Use when</th></tr>
 <tr><td><img src="docs/stencils/eip-badge-gateway.svg" alt="Messaging Gateway"></td><td><b>Messaging Gateway</b><br><code>gateway</code></td><td>The service is reached through a messaging interface.</td></tr>
 <tr><td><img src="docs/stencils/eip-badge-mapper.svg" alt="Messaging Mapper"></td><td><b>Messaging Mapper</b><br><code>mapper</code></td><td>The service maps domain objects to messages.</td></tr>
 <tr><td><img src="docs/stencils/eip-badge-activator.svg" alt="Service Activator"></td><td><b>Service Activator</b><br><code>activator</code></td><td>The endpoint calls a plain service method.</td></tr>
@@ -203,7 +203,7 @@ Pills on a `service` or `external-system` node, e.g. `"badges": ["idempotent", "
 ### Arrows
 
 <table>
-<tr><th width="404">Stencil</th><th>Edge</th><th>Means</th></tr>
+<tr><th width="404">Stencil</th><th width="187">Edge</th><th>Means</th></tr>
 <tr><td><img src="docs/stencils/eip-edge-message.svg" alt="Message"></td><td><b>Message</b><br><code>"kind": "message"</code> (the default)</td><td>A message on a channel.</td></tr>
 <tr><td><img src="docs/stencils/eip-edge-message-command.svg" alt="Command Message"></td><td><b>Command Message</b><br><code>"type": "command"</code></td><td>A command.</td></tr>
 <tr><td><img src="docs/stencils/eip-edge-message-event.svg" alt="Event Message"></td><td><b>Event Message</b><br><code>"type": "event"</code></td><td>An event.</td></tr>

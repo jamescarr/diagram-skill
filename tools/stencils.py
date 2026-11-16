@@ -24,8 +24,10 @@ README = ROOT / "README.md"
 OUT = ROOT / "docs" / "stencils"
 START, END = "<!-- stencils:start -->", "<!-- stencils:end -->"
 PAD = 12  # white margin around each stencil image
-# added to a table's widest image for its image column: GitHub's cell padding (13px a side) and borders
+# added to a column's content width: GitHub's cell padding (13px a side) and borders
 CELL_PAD = 28
+# GitHub sets `code` in a 13.6px monospace font (about 0.6em a character) with 0.4em of padding a side
+CODE_CHAR, CODE_PAD = 8.2, 11
 
 
 def _load_generator():
@@ -111,11 +113,20 @@ def _html(text: str) -> str:
     )
 
 
-def _table(head: tuple[str, str, str], rows: list[tuple[str, int, str, str]]) -> list[str]:
-    """HTML table whose image column is as wide as its widest image, so GitHub cannot shrink the stencils."""
-    width = max(w for _, w, _, _ in rows) + CELL_PAD
-    out = ["<table>", f'<tr><th width="{width}">{head[0]}</th><th>{head[1]}</th><th>{head[2]}</th></tr>']
-    out += [f"<tr><td>{img}</td><td>{name}</td><td>{text}</td></tr>" for img, _, name, text in rows]
+def _table(head: tuple[str, str, str], rows: list[tuple[str, int, str, str, str]]) -> list[str]:
+    """HTML table with fixed image and name column widths, so GitHub neither shrinks a stencil nor breaks a name.
+
+    rows: (image tag, image width, name cell markdown, name cell html, text cell html)
+    """
+    image_w = max(r[1] for r in rows) + CELL_PAD
+    # the longest `code` span in the name column, kept on one line: GitHub breaks code at hyphens and spaces
+    longest = max(len(span) for r in rows for span in r[2].split("`")[1::2])
+    name_w = math.ceil(longest * CODE_CHAR) + CODE_PAD + CELL_PAD
+    out = [
+        "<table>",
+        f'<tr><th width="{image_w}">{head[0]}</th><th width="{name_w}">{head[1]}</th><th>{head[2]}</th></tr>',
+    ]
+    out += [f"<tr><td>{img}</td><td>{name}</td><td>{text}</td></tr>" for img, _, _, name, text in rows]
     return [*out, "</table>", ""]
 
 
@@ -133,9 +144,9 @@ def _render(eip) -> tuple[dict[str, str], str]:
         alt = html.escape(item["name"])
         return f'<img src="docs/stencils/{item_id}.svg" alt="{alt}">', width
 
-    def row(item_id: str, name: str, code: str, text: str) -> tuple[str, int, str, str]:
+    def row(item_id: str, name: str, code: str, text: str) -> tuple[str, int, str, str, str]:
         img, width = image(item_id)
-        return img, width, f"<b>{html.escape(name, quote=False)}</b><br>{_html(code)}", _html(text)
+        return img, width, code, f"<b>{html.escape(name, quote=False)}</b><br>{_html(code)}", _html(text)
 
     aliases: dict[str, list[str]] = {}
     for alias, kind in eip.ALIASES.items():
