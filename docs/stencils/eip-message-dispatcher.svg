@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-40 -12 176 114" width="176" height="114">
+<rect x="-40" y="-12" width="176" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="6,32 32,32" stroke="#868e96" stroke-width="2" fill="none"/>
+<polygon points="32,32 21.61,26 21.61,38" fill="#868e96" stroke="#868e96" stroke-width="1"/>
+<polyline points="46,32 66,16" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="46,32 66,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="46,32 66,48" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<rect x="34" y="26" width="12" height="12" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<polygon points="71,11 76,16 71,21 66,16" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<polygon points="71,27 76,32 71,37 66,32" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<polygon points="71,43 76,48 71,53 66,48" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48" y="73.75">Message Dispatcher</tspan></text>
+</svg>

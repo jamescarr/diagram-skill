@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23 -12 142 114" width="142" height="114">
+<rect x="-23" y="-12" width="142" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<ellipse cx="12" cy="32" rx="3" ry="3" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<polyline points="12,32 34,18" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="12,32 34,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="12,32 34,46" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polygon points="35,13 40,18 35,23 30,18" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<polygon points="35,27 40,32 35,37 30,32" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<polygon points="35,41 40,46 35,51 30,46" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<polyline points="40,18 80,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="40,32 80,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="40,46 80,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<ellipse cx="83" cy="32" rx="3" ry="3" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48" y="73.75">Scatter-Gather</tspan></text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-31 -12 159 114" width="159" height="114">
+<rect x="-31" y="-12" width="159" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="8,50 20,30 36,16 60,16 76,30 88,50" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="8,50 88,50" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="24,50 24,26" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="40,50 40,16" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="56,50 56,16" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="72,50 72,26" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48.5" y="73.75">Messaging Bridge</tspan></text>
+</svg>

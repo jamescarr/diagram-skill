@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23 -12 142 114" width="142" height="114">
+<rect x="-23" y="-12" width="142" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<rect x="14" y="26" width="56" height="14" stroke="#1e1e1e" stroke-width="1" fill="#dee2e6"/>
+<ellipse cx="70" cy="33" rx="4" ry="7" stroke="#1e1e1e" stroke-width="1" fill="#f1f3f5"/>
+<polyline points="78,20 90,44" stroke="#c92a2a" stroke-width="1" fill="none"/>
+<polyline points="90,20 78,44" stroke="#c92a2a" stroke-width="1" fill="none"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48" y="73.75">Channel Purger</tspan></text>
+</svg>

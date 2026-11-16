@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 204 96" width="204" height="96">
+<rect x="-12" y="-12" width="204" height="96" fill="#ffffff"/>
+<rect x="0" y="0" width="180" height="72" rx="18" stroke="#1e1e1e" stroke-width="2" stroke-dasharray="8 6" fill="#f8f9fa"/>
+<text font-size="16" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="90" y="28">External system</tspan></text>
+</svg>

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-31 -12 159 114" width="159" height="114">
+<rect x="-31" y="-12" width="159" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="30,17 66,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="30,32 66,47" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="30,47 66,17" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<rect x="20" y="12" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="20" y="27" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="20" y="42" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="66" y="12" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="66" y="27" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="66" y="42" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48.5" y="73.75">Messaging Mapper</tspan></text>
+</svg>

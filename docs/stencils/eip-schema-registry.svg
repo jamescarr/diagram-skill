@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 174 104" width="174" height="104">
+<rect x="-12" y="-12" width="174" height="104" fill="#ffffff"/>
+<ellipse cx="75" cy="72" rx="75" ry="8" stroke="#1e1e1e" stroke-width="2" fill="#e5dbff"/>
+<rect x="0" y="8" width="150" height="64" stroke="#1e1e1e" stroke-width="2" fill="#e5dbff"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="75" y="32.75">Schema Registry</tspan></text>
+<ellipse cx="75" cy="8" rx="75" ry="8" stroke="#1e1e1e" stroke-width="2" fill="#e5dbff"/>
+<text font-size="12" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="75" y="2.5">{ }</tspan></text>
+</svg>

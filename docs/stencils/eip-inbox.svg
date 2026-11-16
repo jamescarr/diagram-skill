@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-44 -12 184 114" width="184" height="114">
+<rect x="-44" y="-12" width="184" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<rect x="10" y="26" width="26" height="12" stroke="#1e1e1e" stroke-width="1" fill="#dee2e6"/>
+<ellipse cx="36" cy="32" rx="4" ry="6" stroke="#1e1e1e" stroke-width="1" fill="#f1f3f5"/>
+<polyline points="40,32 62,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<line x1="62" y1="32" x2="53.34" y2="27" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="62" y1="32" x2="53.34" y2="37" stroke="#1e1e1e" stroke-width="1"/>
+<ellipse cx="76" cy="40" rx="10" ry="4" stroke="#1e1e1e" stroke-width="1" fill="#d0ebff"/>
+<rect x="66" y="24" width="20" height="16" stroke="#1e1e1e" stroke-width="1" fill="#d0ebff"/>
+<ellipse cx="76" cy="24" rx="10" ry="4" stroke="#1e1e1e" stroke-width="1" fill="#d0ebff"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48" y="73.75">Transactional Inbox</tspan></text>
+</svg>
