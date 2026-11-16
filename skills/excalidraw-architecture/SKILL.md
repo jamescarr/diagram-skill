@@ -5,13 +5,13 @@ description: >-
   message flow, event-driven or microservices system in Excalidraw. Produces
   .excalidraw files in Enterprise Integration Patterns notation (channels,
   routers, translators, endpoints, DLQs, sagas) from a small JSON spec via
-  scripts/eip_excalidraw.py, with a preview SVG and a render check. Not for UI
+  scripts/eip_excalidraw.mjs, with a preview SVG and a render check. Not for UI
   mockups, slide decks, or freeform whiteboarding.
 license: MIT
-compatibility: "build needs python3 >= 3.12 (stdlib only); --png export needs node >= 22, Chrome or Chromium, and network access to esm.sh"
+compatibility: "needs node >= 22 and nothing else; --png export also needs Chrome or Chromium and network access to esm.sh"
 metadata:
   author: jamescarr
-  version: "1.0.0"
+  version: "2.0.0"
 ---
 # Excalidraw architecture diagrams (EIP notation)
 
@@ -44,9 +44,9 @@ A diagram is a small JSON **spec** — nodes, edges, groups — plus a generator
    - management: wire tap, store, control bus.
    Read the `enterprise-integration-patterns` skill, if you have it installed, when a pattern choice is unclear.
 2. **Pick the level** — `context`: actors, services, external systems, broker as `message-bus`, `rpc`/`data` edges. `flow` (the default): one business flow end to end with channels and EIP components. `endpoint`: inside one service — gateway → outbox → channel, or consumer → idempotent receiver → activator. One flow per diagram, at most 20 nodes; split by flow otherwise.
-3. **Write the spec** — `<name>.spec.json` next to where the diagram will live (default `docs/architecture/`), using the cheat-sheet below. Run `python3 <skill-dir>/scripts/eip_excalidraw.py kinds` for the live catalogue.
-4. **Build** — `python3 <skill-dir>/scripts/eip_excalidraw.py build <name>.spec.json` writes `<name>.excalidraw` and `<name>.svg`. Fix every `error:` (exit 2); treat `warning:` as a layout defect (`--strict` makes warnings exit 1). `--check` validates and lays out without writing.
-   Add `--png [OUT.png]` to also export a PNG rendered by Excalidraw itself (hand-drawn, Excalifont, the scene embedded in the file so it can be dropped back onto excalidraw.com) — what a README, a doc or a blog post should embed. It needs node >= 22, Chrome or Chromium (`CHROME` overrides the lookup) and network access to esm.sh; it drives the browser through `scripts/export_png.mjs`, stdlib only. A failed export exits 3 and the scene is still written.
+3. **Write the spec** — `<name>.spec.json` next to where the diagram will live (default `docs/architecture/`), using the cheat-sheet below. Run `node <skill-dir>/scripts/eip_excalidraw.mjs kinds` for the live catalogue.
+4. **Build** — `node <skill-dir>/scripts/eip_excalidraw.mjs build <name>.spec.json` writes `<name>.excalidraw` and `<name>.svg`. Fix every `error:` (exit 2); treat `warning:` as a layout defect (`--strict` makes warnings exit 1). `--check` validates and lays out without writing.
+   Add `--png [OUT.png]` to also export a PNG rendered by Excalidraw itself (hand-drawn, Excalifont, the scene embedded in the file so it can be dropped back onto excalidraw.com) — what a README, a doc or a blog post should embed. It needs Chrome or Chromium (`CHROME` overrides the lookup) and network access to esm.sh; it drives the browser through `scripts/export_png.mjs`. A failed export exits 3 and the scene is still written.
 5. **Look** — `read <name>.png` when you built one, otherwise `read <name>.svg:img`; then work the review list.
 6. **Fix** — rebuild after each spec change:
 

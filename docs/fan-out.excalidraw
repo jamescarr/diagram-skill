@@ -1724,7 +1724,7 @@
       "startBinding": {
         "elementId": "n:orders.placed",
         "focus": 0,
-        "gap": 1.0
+        "gap": 1
       },
       "endBinding": {
         "elementId": "n:orders.placed.dlq",

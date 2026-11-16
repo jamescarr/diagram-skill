@@ -6,15 +6,18 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        # the oldest supported Node, and the newest stable release from actions/node-versions
+        # (`latest` would pick a nodejs.org prerelease)
+        node: ["22", "*"]
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-node@v7
-        # newest stable release from actions/node-versions; `latest` would pick a nodejs.org prerelease
-        with: { node-version: "*", check-latest: true }
+        with: { node-version: "${{ matrix.node }}", check-latest: true }
+      # the Agent Skills reference validator is a Python CLI; CI fetches it, the repo does not depend on it
       - uses: astral-sh/setup-uv@v10.3.3
-        with: { python-version: "3.12" }
-      - run: uv sync
-      - run: uv run agentskills validate skills/excalidraw-architecture
-      - run: python3 skills/excalidraw-architecture/scripts/eip_excalidraw.py build skills/excalidraw-architecture/examples/order-flow.spec.json --check --strict
-      - run: python3 tools/stencils.py --check
-      - run: uv run pytest -q
+      - run: uvx --from skills-ref==0.1.1 agentskills validate skills/excalidraw-architecture
+      - run: node skills/excalidraw-architecture/scripts/eip_excalidraw.mjs build skills/excalidraw-architecture/examples/order-flow.spec.json --check --strict
+      - run: node tools/stencils.mjs --check
+      - run: node --test

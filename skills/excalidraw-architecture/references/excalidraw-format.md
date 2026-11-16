@@ -162,4 +162,8 @@ print(await tab.errors()); await tab.screenshot(); await browser.close(name="exc
 
 A clean render prints `{'entries': [], ...}` from `tab.errors()` and a hand-drawn screenshot matching the SVG preview's layout. Without the browser helper the SVG preview is the only visual check; say so rather than claiming a real render.
 
-The stencil library can be checked the same way: inject `library_preview(json.load(open("<skill-dir>/library/eip.excalidrawlib")))["elements"]` (`library_preview` is in `scripts/eip_excalidraw.py`) instead of the scene's elements; it lays every item out in the grid that `library/eip.svg` shows.
+The stencil library can be checked the same way. Write its preview scene, which lays every item out in the grid that `library/eip.svg` shows, and load that file instead of the diagram:
+
+```sh
+node --input-type=module -e "import { buildLibrary, libraryPreview } from '<skill-dir>/scripts/eip_excalidraw.mjs'; process.stdout.write(JSON.stringify(libraryPreview(buildLibrary())))" > /tmp/eip-library.excalidraw
+```

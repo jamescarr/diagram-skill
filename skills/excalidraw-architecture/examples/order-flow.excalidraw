@@ -4410,7 +4410,7 @@
       "startBinding": {
         "elementId": "n:region-router",
         "focus": 0,
-        "gap": 1.0
+        "gap": 1
       },
       "endBinding": {
         "elementId": "n:ship.eu",
@@ -4523,7 +4523,7 @@
       "startBinding": {
         "elementId": "n:region-router",
         "focus": 0,
-        "gap": 1.0
+        "gap": 1
       },
       "endBinding": {
         "elementId": "n:ship.us",
@@ -4873,7 +4873,7 @@
       "startBinding": {
         "elementId": "n:saga",
         "focus": 0,
-        "gap": 1.0
+        "gap": 1
       },
       "endBinding": {
         "elementId": "n:payments.cmd",
@@ -5201,7 +5201,7 @@
       "endBinding": {
         "elementId": "n:saga",
         "focus": 0,
-        "gap": 1.0
+        "gap": 1
       },
       "startArrowhead": null,
       "endArrowhead": "arrow",
@@ -5284,7 +5284,7 @@
       "startBinding": {
         "elementId": "n:orders.placed",
         "focus": 0,
-        "gap": 1.0
+        "gap": 1
       },
       "endBinding": {
         "elementId": "n:orders.placed.dlq",
