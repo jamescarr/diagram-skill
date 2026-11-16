@@ -44,7 +44,7 @@
       "id": "n:orders",
       "type": "rectangle",
       "x": 40,
-      "y": 218,
+      "y": 230,
       "width": 180,
       "height": 72,
       "angle": 0,
@@ -85,7 +85,7 @@
       "id": "n:orders:lbl",
       "type": "text",
       "x": 68,
-      "y": 244,
+      "y": 256,
       "width": 125,
       "height": 20,
       "angle": 0,
@@ -124,7 +124,7 @@
       "id": "n:orders:b0",
       "type": "rectangle",
       "x": 52,
-      "y": 209,
+      "y": 221,
       "width": 26,
       "height": 18,
       "angle": 0,
@@ -156,7 +156,7 @@
       "id": "n:orders:b0:t",
       "type": "text",
       "x": 58,
-      "y": 211,
+      "y": 223,
       "width": 14,
       "height": 14,
       "angle": 0,
@@ -195,7 +195,7 @@
       "id": "n:orders:b1",
       "type": "rectangle",
       "x": 84,
-      "y": 209,
+      "y": 221,
       "width": 52,
       "height": 18,
       "angle": 0,
@@ -227,7 +227,7 @@
       "id": "n:orders:b1:t",
       "type": "text",
       "x": 90,
-      "y": 211,
+      "y": 223,
       "width": 40,
       "height": 14,
       "angle": 0,
@@ -265,8 +265,8 @@
     {
       "id": "n:orders.placed",
       "type": "rectangle",
-      "x": 378,
-      "y": 236,
+      "x": 403,
+      "y": 248,
       "width": 171,
       "height": 36,
       "angle": 0,
@@ -316,8 +316,8 @@
     {
       "id": "n:orders.placed:i0",
       "type": "ellipse",
-      "x": 537,
-      "y": 236,
+      "x": 562,
+      "y": 248,
       "width": 24,
       "height": 36,
       "angle": 0,
@@ -346,8 +346,8 @@
     {
       "id": "n:orders.placed:tag",
       "type": "text",
-      "x": 388,
-      "y": 247,
+      "x": 413,
+      "y": 259,
       "width": 139,
       "height": 14,
       "angle": 0,
@@ -385,8 +385,8 @@
     {
       "id": "n:orders.placed:cap",
       "type": "text",
-      "x": 415,
-      "y": 280,
+      "x": 440,
+      "y": 292,
       "width": 110,
       "height": 18,
       "angle": 0,
@@ -424,8 +424,8 @@
     {
       "id": "n:orders.placed:sub",
       "type": "text",
-      "x": 430,
-      "y": 300,
+      "x": 455,
+      "y": 312,
       "width": 80,
       "height": 15,
       "angle": 0,
@@ -461,9 +461,73 @@
       "lineHeight": 1.25
     },
     {
+      "id": "n:billing:s2",
+      "type": "rectangle",
+      "x": 805,
+      "y": 109,
+      "width": 206,
+      "height": 72,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#fff3bf",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [
+        "grp:billing"
+      ],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1422023105,
+      "version": 1,
+      "versionNonce": 1422023105,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1,
+      "link": null,
+      "locked": false
+    },
+    {
+      "id": "n:billing:s1",
+      "type": "rectangle",
+      "x": 799,
+      "y": 103,
+      "width": 206,
+      "height": 72,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "#fff3bf",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [
+        "grp:billing"
+      ],
+      "frameId": null,
+      "index": null,
+      "roundness": {
+        "type": 3
+      },
+      "seed": 1305151611,
+      "version": 1,
+      "versionNonce": 1305151611,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1,
+      "link": null,
+      "locked": false
+    },
+    {
       "id": "n:billing",
       "type": "rectangle",
-      "x": 743,
+      "x": 793,
       "y": 97,
       "width": 206,
       "height": 72,
@@ -504,7 +568,7 @@
     {
       "id": "n:billing:lbl",
       "type": "text",
-      "x": 812,
+      "x": 862,
       "y": 123,
       "width": 68,
       "height": 20,
@@ -543,7 +607,7 @@
     {
       "id": "n:billing:b0",
       "type": "rectangle",
-      "x": 755,
+      "x": 805,
       "y": 88,
       "width": 78,
       "height": 18,
@@ -575,7 +639,7 @@
     {
       "id": "n:billing:b0:t",
       "type": "text",
-      "x": 761,
+      "x": 811,
       "y": 90,
       "width": 66,
       "height": 14,
@@ -614,7 +678,7 @@
     {
       "id": "n:billing:b1",
       "type": "rectangle",
-      "x": 839,
+      "x": 889,
       "y": 88,
       "width": 92,
       "height": 18,
@@ -646,7 +710,7 @@
     {
       "id": "n:billing:b1:t",
       "type": "text",
-      "x": 845,
+      "x": 895,
       "y": 90,
       "width": 80,
       "height": 14,
@@ -685,8 +749,8 @@
     {
       "id": "n:shipping",
       "type": "rectangle",
-      "x": 756,
-      "y": 218,
+      "x": 806,
+      "y": 230,
       "width": 180,
       "height": 72,
       "angle": 0,
@@ -726,8 +790,8 @@
     {
       "id": "n:shipping:lbl",
       "type": "text",
-      "x": 808,
-      "y": 244,
+      "x": 858,
+      "y": 256,
       "width": 77,
       "height": 20,
       "angle": 0,
@@ -765,8 +829,8 @@
     {
       "id": "n:shipping:b0",
       "type": "rectangle",
-      "x": 768,
-      "y": 209,
+      "x": 818,
+      "y": 221,
       "width": 78,
       "height": 18,
       "angle": 0,
@@ -797,8 +861,8 @@
     {
       "id": "n:shipping:b0:t",
       "type": "text",
-      "x": 774,
-      "y": 211,
+      "x": 824,
+      "y": 223,
       "width": 66,
       "height": 14,
       "angle": 0,
@@ -836,8 +900,8 @@
     {
       "id": "n:shipping:b1",
       "type": "rectangle",
-      "x": 852,
-      "y": 209,
+      "x": 902,
+      "y": 221,
       "width": 59,
       "height": 18,
       "angle": 0,
@@ -868,8 +932,8 @@
     {
       "id": "n:shipping:b1:t",
       "type": "text",
-      "x": 858,
-      "y": 211,
+      "x": 908,
+      "y": 223,
       "width": 47,
       "height": 14,
       "angle": 0,
@@ -907,8 +971,8 @@
     {
       "id": "n:audit:i0",
       "type": "ellipse",
-      "x": 776,
-      "y": 531,
+      "x": 826,
+      "y": 543,
       "width": 140,
       "height": 16,
       "angle": 0,
@@ -937,8 +1001,8 @@
     {
       "id": "n:audit",
       "type": "rectangle",
-      "x": 776,
-      "y": 475,
+      "x": 826,
+      "y": 487,
       "width": 140,
       "height": 64,
       "angle": 0,
@@ -976,8 +1040,8 @@
     {
       "id": "n:audit:lbl",
       "type": "text",
-      "x": 800,
-      "y": 498,
+      "x": 850,
+      "y": 510,
       "width": 93,
       "height": 18,
       "angle": 0,
@@ -1015,8 +1079,8 @@
     {
       "id": "n:audit:i1",
       "type": "ellipse",
-      "x": 776,
-      "y": 467,
+      "x": 826,
+      "y": 479,
       "width": 140,
       "height": 16,
       "angle": 0,
@@ -1045,8 +1109,8 @@
     {
       "id": "n:orders.placed.dlq",
       "type": "rectangle",
-      "x": 380,
-      "y": 331,
+      "x": 405,
+      "y": 343,
       "width": 168,
       "height": 36,
       "angle": 0,
@@ -1080,8 +1144,8 @@
     {
       "id": "n:orders.placed.dlq:i0",
       "type": "ellipse",
-      "x": 536,
-      "y": 331,
+      "x": 561,
+      "y": 343,
       "width": 24,
       "height": 36,
       "angle": 0,
@@ -1110,8 +1174,8 @@
     {
       "id": "n:orders.placed.dlq:i1",
       "type": "line",
-      "x": 464,
-      "y": 373,
+      "x": 489,
+      "y": 385,
       "width": 28,
       "height": 28,
       "angle": 0,
@@ -1183,8 +1247,8 @@
     {
       "id": "n:orders.placed.dlq:tag",
       "type": "text",
-      "x": 390,
-      "y": 342,
+      "x": 415,
+      "y": 354,
       "width": 20,
       "height": 14,
       "angle": 0,
@@ -1222,8 +1286,8 @@
     {
       "id": "n:orders.placed.dlq:cap",
       "type": "text",
-      "x": 398,
-      "y": 409,
+      "x": 423,
+      "y": 421,
       "width": 143,
       "height": 18,
       "angle": 0,
@@ -1262,8 +1326,8 @@
       "id": "e:0",
       "type": "arrow",
       "x": 221,
-      "y": 254,
-      "width": 156,
+      "y": 266,
+      "width": 181,
       "height": 0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -1296,14 +1360,18 @@
           0
         ],
         [
-          156,
+          78,
+          0
+        ],
+        [
+          181,
           0
         ]
       ],
       "startBinding": {
         "elementId": "n:orders",
         "focus": 0,
-        "gap": 1.0
+        "gap": 1
       },
       "endBinding": {
         "elementId": "n:orders.placed",
@@ -1318,7 +1386,7 @@
       "id": "e:0:lbl",
       "type": "text",
       "x": 236,
-      "y": 245,
+      "y": 257,
       "width": 126,
       "height": 18,
       "angle": 0,
@@ -1354,10 +1422,10 @@
     {
       "id": "e:1",
       "type": "arrow",
-      "x": 562,
-      "y": 241,
-      "width": 180,
-      "height": 108,
+      "x": 587,
+      "y": 253,
+      "width": 205,
+      "height": 120,
       "angle": 0,
       "strokeColor": "#1e1e1e",
       "backgroundColor": "transparent",
@@ -1394,19 +1462,23 @@
         ],
         [
           15,
-          -108
+          -120
         ],
         [
-          174,
-          -108
+          102,
+          -120
         ],
         [
-          177,
-          -108
+          103,
+          -120
         ],
         [
-          180,
-          -108
+          104,
+          -120
+        ],
+        [
+          205,
+          -120
         ]
       ],
       "startBinding": {
@@ -1426,7 +1498,7 @@
     {
       "id": "e:1:lbl",
       "type": "text",
-      "x": 594,
+      "x": 626,
       "y": 124,
       "width": 126,
       "height": 18,
@@ -1463,9 +1535,9 @@
     {
       "id": "e:2",
       "type": "arrow",
-      "x": 562,
-      "y": 254,
-      "width": 193,
+      "x": 587,
+      "y": 266,
+      "width": 218,
       "height": 0,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -1498,7 +1570,7 @@
           0
         ],
         [
-          193,
+          218,
           0
         ]
       ],
@@ -1519,8 +1591,8 @@
     {
       "id": "e:2:lbl",
       "type": "text",
-      "x": 596,
-      "y": 245,
+      "x": 633,
+      "y": 257,
       "width": 126,
       "height": 18,
       "angle": 0,
@@ -1556,9 +1628,9 @@
     {
       "id": "e:3",
       "type": "arrow",
-      "x": 562,
-      "y": 267,
-      "width": 213,
+      "x": 587,
+      "y": 279,
+      "width": 238,
       "height": 240,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -1594,7 +1666,7 @@
           240
         ],
         [
-          213,
+          238,
           240
         ]
       ],
@@ -1615,8 +1687,8 @@
     {
       "id": "e:4",
       "type": "arrow",
-      "x": 397,
-      "y": 273,
+      "x": 422,
+      "y": 285,
       "width": 0,
       "height": 57,
       "angle": 0,
@@ -1652,7 +1724,7 @@
       "startBinding": {
         "elementId": "n:orders.placed",
         "focus": 0,
-        "gap": 1
+        "gap": 1.0
       },
       "endBinding": {
         "elementId": "n:orders.placed.dlq",

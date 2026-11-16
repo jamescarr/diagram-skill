@@ -92,9 +92,9 @@ Label text is a separate text element with `containerId` = the arrow id; the arr
 - odd number of points → on the middle point;
 - even number of points → on the midpoint of the middle segment.
 
-The generator wants labels on the arrow's final horizontal run, inside the column gap before the target and clear of the gap's vertical routing bands, so where needed it inserts collinear points until Excalidraw's rule lands there: a straight edge becomes 3 points (the middle one is the label centre) and an `ortho` edge 6 points (the middle segment starts at the turn). A straight edge whose mid-run label is already clear stays at 2 points. Vertical, `below` and `above` arrows keep Excalidraw's default spot (the vertical's midpoint, or the long horizontal). The extra points are invisible; they show up only as handles when the arrow is selected.
+The generator wants labels on the arrow's final horizontal run, inside the column gap before the target, clear of the gap's vertical routing bands and clear of the arrowhead. Excalidraw draws an `arrow` head 25px long, shrunk to half the final segment when that segment is shorter than 50px. So where needed the generator inserts collinear points until Excalidraw's rule lands there: a straight edge becomes 3 points (the middle one is the label centre) and an `ortho` edge 7 points (the middle one is the label centre; the two after it are 1px apart under the label, so the final segment, which carries the arrowhead, runs from the label to the target). A straight edge whose mid-run label is already clear stays at 2 points. Vertical, `below` and `above` arrows keep Excalidraw's default spot (the vertical's midpoint, or the long horizontal). The extra points are invisible; they show up only as handles when the arrow is selected. A final segment under 25px is reported as `warning: edge N (a -> b) ends in a Mpx segment: its arrowhead shrinks`.
 
-Tradeoff when editing by hand: dragging a bound node moves only the arrow's end points. A 2-point arrow just tilts; a 3-point arrow kinks at its middle point, and every `ortho` arrow (4 or 6 points) keeps its interior corners where they were. Prefer moving nodes in the spec and rebuilding.
+Tradeoff when editing by hand: dragging a bound node moves only the arrow's end points. A 2-point arrow just tilts; a 3-point arrow kinks at its middle point, and every `ortho` arrow (4 or 7 points) keeps its interior corners where they were. Prefer moving nodes in the spec and rebuilding.
 
 The text is anchored at that point minus half its size: 14px, centred. The SVG preview draws a white rectangle behind it, the mask Excalidraw draws.
 
@@ -112,7 +112,7 @@ The text is anchored at that point minus half its size: 14px, centred. The SVG p
 1. Title text.
 2. Lane labels and lane separator lines.
 3. Group frames.
-4. Per root node, in this z-order: family under-parts (cylinder bottom ellipse) → bindable box → bound label → family over-parts (pipe cap, cylinder top) → kind glyph icons → pipe tag text → badges → caption → sub.
+4. Per root node, in this z-order: stack cards (competing consumers, farthest first) → family under-parts (cylinder bottom ellipse) → bindable box → bound label → family over-parts (pipe cap, cylinder top) → kind glyph icons → pipe tag text → badges → caption → sub.
 5. Shadow nodes and attached notes, after all root nodes, same per-node order.
 6. Each arrow followed immediately by its label.
 7. Legend frame, then its entries.
@@ -120,6 +120,8 @@ The text is anchored at that point minus half its size: 14px, centred. The SVG p
 Icons sit **on top of** the box so they stay visible. Glyph lines that carry arrowheads are emitted as unbound `arrow` elements, because Excalidraw only draws arrowheads on arrows, not on lines. The `schema-registry` cylinder's `{ }` sits on the lid (centre y=8), clear of the label.
 
 Badge text is free text centred on its pill (not bound to it). Badges, pills and glyph icons share the node's `groupIds`, so a click selects the whole node.
+
+An app node with a `competing` or `competing:N` badge draws copies of its box behind it (`n:<id>:s1`, `n:<id>:s2`), each 6px further down and right: one card per instance beyond the first, at most two, and two for a bare `competing`. Only the front box is bindable. Arrows on its right and bottom sides end on the outer card, with the binding `gap` widened by the same 6px per card, as arrows leaving a pipe end on its cap. The `sub` caption sits below the outer card.
 
 ## Style
 
