@@ -54,6 +54,7 @@ A diagram is a small JSON **spec** — nodes, edges, groups — plus a generator
    |---|---|
    | arrow crosses a node | `route: "ortho"` or `"below"`, or pin `row` |
    | label overlaps a node | shorten `message`/`label`, or pin the node's `row` away from the arrow |
+   | arrowhead shrinks | too many arrows turn in that column gap: route one `below`/`above`, or pin `row`s so fewer verticals share it |
    | backward arrow clutter | `route: "above"` |
    | reply arrow loops under the whole diagram | `route: "ortho"`, or put the reply channel next to the request channel |
    | crowded column | add `lanes`, or split the diagram |
@@ -100,7 +101,7 @@ Badges (app-family nodes only; the pill renders the short text):
 | Group | Badges |
 |---|---|
 | Endpoint | `gateway` (Messaging Gateway), `mapper` (Messaging Mapper), `activator` (Service Activator), `adapter` (Channel Adapter) |
-| Consumption | `polling` (Polling Consumer), `event-driven` (Event-Driven Consumer), `competing` / `competing:N` (Competing Consumers, renders `competing ×N`), `dispatcher` (Message Dispatcher), `selective` (Selective Consumer), `durable` (Durable Subscriber) |
+| Consumption | `polling` (Polling Consumer), `event-driven` (Event-Driven Consumer), `competing` / `competing:N` (Competing Consumers, renders `competing ×N` on a stack of up to three boxes), `dispatcher` (Message Dispatcher), `selective` (Selective Consumer), `durable` (Durable Subscriber) |
 | Transaction | `tx` (Transactional Client), `outbox` (Transactional Outbox), `inbox` (Transactional Inbox), `idempotent` (Idempotent Receiver) |
 | Resilience | `bulkhead`, `retry`, `circuit-breaker` — resilience patterns, not EIP |
 

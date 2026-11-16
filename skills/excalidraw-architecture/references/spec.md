@@ -252,7 +252,7 @@ Aliases resolve before validation; either spelling is accepted.
 
 ## Badges
 
-Badges are pills straddling the top edge of an app-family node. `competing` may be written `competing:N` and renders `competing ×N`.
+Badges are pills straddling the top edge of an app-family node. `competing` may be written `competing:N` and renders `competing ×N`. A competing node is drawn as a stack of boxes, one per instance and at most three (`competing:2` draws two, `competing:3` and above three, and bare `competing` three). Arrows on its right and bottom sides end on the back of the stack.
 
 | Badge | EIP name | Use when |
 |---|---|---|
@@ -310,13 +310,13 @@ The grid is columns (layers) left to right, rows top to bottom.
 - **Columns**: derived from the edges. `message` edges with `type: "reply"` are inserted reversed for layering, so a reply channel lands beside its request channel. Remaining cycles are broken by DFS back-edge detection in spec order. `col = node.col` when pinned, otherwise `max(col(predecessor) + 1)`, sources at 0. Pinned columns never move; unpinned successors still take `max(pred + 1)`.
 - **Rows**: with `lanes`, each lane is a band and nodes sharing `(col, lane)` stack top to bottom in spec order inside it. Without lanes, two barycentre sweeps (left→right over neighbours in earlier columns, right→left over neighbours in later columns); each node takes the row nearest its neighbours' mean row, ties by spec order, collisions push down, so a column may skip rows to line up with its neighbours. A pinned `row` is exact; unpinned nodes avoid it.
 - **Alignment**: rows are aligned on the bindable box centre, so same-row arrows are horizontal; columns are aligned on the box centre x.
-- **Gaps**: the base column gap is 120. It widens to hold the gap's vertical routing bands plus the widest arrow label that sits in it; when a gap carries labels in both directions (a request and its reply), it holds the widest of each side by side. The base row gap is 40 and widens so frames of different groups do not overlap.
+- **Gaps**: the base column gap is 120. It widens to hold the gap's vertical routing bands plus the widest arrow label that sits in it, plus 25px for the arrowhead in front of the label's target. When a gap carries labels in both directions (a request and its reply), it holds the widest of each side by side, each with its own arrowhead room. The base row gap is 40 and widens so frames of different groups do not overlap.
 - **Sizing**: pipes widen to fit the kind tag plus `tags` text. App, cylinder, actor and note boxes widen or grow to fit their label; bound text always fits the container minus 10px.
 - **Shadow nodes** sit under their channel, centred, 16px below its caption; the auto `dlq` edge runs from the channel to the shadow node, kept vertical and clear of the channel's caption.
 - **Attached notes** sit under the target node, centred.
-- **Attachment points**: several arrows on one side of a node are spread 14px apart, ordered by the other endpoint's position; an arrow to a node in the same row keeps the side's centre so it stays horizontal; the spacing widens when an arrow label sits on one of the runs. Points stay 10px (pipes 5px, EIP component and message boxes 6px, rounded boxes the corner radius) inside the side. Arrows leave a pipe's right side from the cap's outer edge. Bottom attachments move beside the node's caption when there is room.
+- **Attachment points**: several arrows on one side of a node are spread 14px apart, ordered by the other endpoint's position; an arrow to a node in the same row keeps the side's centre so it stays horizontal; the spacing widens when an arrow label sits on one of the runs. Points stay 10px (pipes 5px, EIP component and message boxes 6px, rounded boxes the corner radius) inside the side. Arrows leave a pipe's right side from the cap's outer edge, and a competing node's right and bottom sides from the back of its stack. Bottom attachments move beside the node's caption when there is room.
 - **Vertical bands**: in each column gap, forward `ortho` verticals run at 16px, 24px, … from the gap's left edge, backward ones at 16px, 24px, … from its right edge, ordered so turns do not cross.
-- **Labels**: an arrow that enters its target from the side carries its label on that final horizontal run, in the gap before the target and clear of both bands: centred, or pushed against its own target when the gap also carries labels running the other way. A straight arrow keeps its plain mid-run label (2 points) unless a band or an opposing label is in the way. Vertical, `below` and `above` arrows carry it on the vertical or on the long horizontal. See `excalidraw-format.md` → Arrow labels for how this survives Excalidraw's own label placement and what it costs when nodes are dragged.
+- **Labels**: an arrow that enters its target from the side carries its label on that final horizontal run, in the gap before the target, clear of both bands and of the 25px the arrowhead covers: centred, or pushed against its own target when the gap also carries labels running the other way. A straight arrow keeps its plain mid-run label (2 points) unless a band, the arrowhead or an opposing label is in the way. Vertical, `below` and `above` arrows carry it on the vertical or on the long horizontal. See `excalidraw-format.md` → Arrow labels for how this survives Excalidraw's own label placement and what it costs when nodes are dragged.
 
 ### Default routes
 
@@ -336,7 +336,7 @@ Explicit `route` values:
 - `above`: reserves space above the first row (backward edges that should not pass underneath).
 - `below`: passes below the content, with each successive below-edge offset further down.
 
-`warning:` lines report layout defects (`edge 4 (a -> b) crosses node 'c'`, `label of edge 4 overlaps node 'c'`, a frame enclosing a non-member, overlapping frames, a group with no members); they do not stop the build. Edges are numbered by their index in `edges`; automatic `dlq` edges continue the numbering after the last spec edge.
+`warning:` lines report layout defects (`edge 4 (a -> b) crosses node 'c'`, `label of edge 4 overlaps node 'c'`, `edge 4 (a -> b) ends in a 12px segment: its arrowhead shrinks`, a frame enclosing a non-member, overlapping frames, a group with no members); they do not stop the build. Edges are numbered by their index in `edges`; automatic `dlq` edges continue the numbering after the last spec edge.
 
 ## Validation messages
 

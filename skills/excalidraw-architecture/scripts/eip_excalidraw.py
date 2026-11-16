@@ -55,6 +55,8 @@ LEGEND_GAP = 60
 FAN_STEP = 14
 ORTHO_STEP = 8
 BAND_PAD = 16
+ARROWHEAD = 25  # Excalidraw's "arrow" head length; it shrinks to half the final segment when that is shorter
+STACK_STEP = 6  # offset of each card stacked behind a competing-consumers node
 LOOP_OFFSET = 40
 LOOP_STEP = 24
 LEGEND_COLS = 4
@@ -826,6 +828,17 @@ def _badge_name(badge: str) -> str:
     return BADGES["competing" if _COMPETING_RE.match(badge) else badge]
 
 
+def _stack_cards(badges) -> int:
+    """Cards drawn behind a competing-consumers node: one per extra instance, at most two."""
+    for b in badges:
+        if b == "competing":
+            return 2
+        m = _COMPETING_RE.match(b)
+        if m:
+            return min(int(m.group(1)), 3) - 1
+    return 0
+
+
 def _pill(eid, text, x, font, groups) -> tuple[list[dict], float]:
     w, h = _text_size([text], 11, font)
     pw = w + 12
@@ -843,6 +856,7 @@ class Drawn:
     shape: str = "rect"
     radius: float = 0.0
     right_extra: float = 0.0
+    bottom_extra: float = 0.0
     caption: tuple[float, float] | None = None
     margin: float = 10.0
 
@@ -856,7 +870,7 @@ def _draw_node(base, gid, kind_name, label, sub, badges, tags, font, rough, *, b
     groups = [gid]
     els: list[dict] = []
     k = 0
-    shape, radius, right_extra = "rect", 0.0, 0.0
+    shape, radius, right_extra, bottom_extra = "rect", 0.0, 0.0, 0.0
     caption_lines: list[str] = []
 
     if fam in ("component", "message"):
@@ -891,9 +905,15 @@ def _draw_node(base, gid, kind_name, label, sub, badges, tags, font, rough, *, b
         pill_ws = [_text_size([p], 11, font)[0] + 12 for p in pills]
         w = max(180, tw + 32, 24 + sum(pw + 6 for pw in pill_ws))
         h = max(72, th + 20)
+        cards = 0 if bare else _stack_cards(badges)
+        for i in range(cards, 0, -1):  # farthest first, so the front box draws on top
+            off = i * STACK_STEP
+            els.append(_el(f"{base}:s{i}", "rectangle", off, off, w, h, bg=fill, sw=2, ss=ss, rough=rough,
+                           roundness={"type": 3}, groups=groups))  # fmt: skip
         box = _el(base, "rectangle", 0, 0, w, h, bg=fill, sw=2, ss=ss, rough=rough, roundness={"type": 3},
                   groups=groups, link=link)  # fmt: skip
         els.append(box)
+        right_extra = bottom_extra = cards * STACK_STEP
         if lines:
             els.append(_bound_text(box, f"{base}:lbl", lines, 16, font, groups))
         x = 12.0
@@ -902,7 +922,7 @@ def _draw_node(base, gid, kind_name, label, sub, badges, tags, font, rough, *, b
             els += pill_els
             x += pw + 6
         radius = min(w, h) * 0.25 if min(w, h) <= 128 else 32
-        cx, cap_y = w / 2, h + 8
+        cx, cap_y = w / 2, h + 8 + bottom_extra
     elif fam == "cylinder":
         lines = [] if bare else _wrap(label, 16)
         tw, th = _text_size(lines, 14, font)
@@ -951,7 +971,7 @@ def _draw_node(base, gid, kind_name, label, sub, badges, tags, font, rough, *, b
     els += below
     caption = (min(t["x"] for t in below), max(t["x"] + t["width"] for t in below)) if below else None
     margin = 5.0 if fam == "pipe" else 6.0 if fam in ("component", "message") else max(10.0, radius)
-    return Drawn(els, box, shape, radius, right_extra, caption, margin)
+    return Drawn(els, box, shape, radius, right_extra, bottom_extra, caption, margin)
 
 
 # --------------------------------------------------------------------------- geometry helpers
@@ -1368,7 +1388,8 @@ class _Builder:
         for g in range(len(gap_w)):
             fwd, back = self._band_widths(g)
             right, left = self.label_w[(g, True)], self.label_w[(g, False)]
-            labels = right + left + 48 if right and left else max(right, left) + 32
+            # each label direction also keeps clear of the arrowhead in front of its own target
+            labels = right + left + 48 + 2 * ARROWHEAD if right and left else max(right, left) + 32 + ARROWHEAD
             gap_w[g] = max(gap_w[g], fwd + back + labels)
         row_gap = [float(ROW_GAP)] * max(self.nrows, 1)
         for _ in range(12):
@@ -1493,7 +1514,7 @@ class _Builder:
             return (x + w + n.drawn.right_extra + 1, along), 1 + n.drawn.right_extra
         if side == "top":
             return (along, y - 1), 1
-        return (along, y + h + 1), 1
+        return (along, y + h + n.drawn.bottom_extra + 1), 1 + n.drawn.bottom_extra
 
     def _attach(self):
         groups = defaultdict(list)
@@ -1554,10 +1575,10 @@ class _Builder:
         return left, left + self.gap_w[g]
 
     def _label_window(self, e: _Edge, pts: list) -> list:
-        """Centre the label on the final horizontal run, clear of the gap's vertical bands.
+        """Centre the label on the final horizontal run, clear of the gap's vertical bands and the arrowhead.
 
         Excalidraw centres a label on the middle point (odd count) or the middle segment (even count),
-        so collinear points are inserted to make that spot the window centre.
+        so collinear points are inserted to make the middle point the window centre.
         """
         g = e.label_gap
         if not e.lines or g is None or not 0 <= g < self.ncols or len(pts) not in (2, 4):
@@ -1570,6 +1591,11 @@ class _Builder:
         fwd, back = self._band_widths(g)
         lo = max(min(a[0], q[0]), left + fwd) + 8
         hi = min(max(a[0], q[0]), right - back) - 8
+        # Excalidraw draws the arrowhead over the last ARROWHEAD px before the target
+        if d > 0:
+            hi -= ARROWHEAD
+        else:
+            lo += ARROWHEAD
         if hi - lo < 4:
             return pts
         cx = (lo + hi) / 2
@@ -1577,23 +1603,23 @@ class _Builder:
         if both and hi - lo > e.tw:
             cx = hi - e.tw / 2 if d > 0 else lo + e.tw / 2
         if len(pts) == 2:
-            # keep plain 2-point arrows (they stay straight when a node is dragged) unless a band
-            # of verticals or an opposing label shares the default, mid-run label position
+            # keep plain 2-point arrows (they stay straight when a node is dragged) unless a band of
+            # verticals, the arrowhead or an opposing label shares the default, mid-run label position
             mid = (a[0] + q[0]) / 2
             span = (mid - e.tw / 2 - 4, mid + e.tw / 2 + 4)
             bands = [(left, left + fwd)] if fwd else []
             bands += [(right - back, right)] if back else []
+            bands.append((q[0] - ARROWHEAD, q[0]) if d > 0 else (q[0], q[0] + ARROWHEAD))
             if not both and not any(b0 < span[1] and span[0] < b1 for b0, b1 in bands):
                 return pts
             if d * (cx - a[0]) <= 2 or d * (q[0] - cx) <= 2:
                 return pts
             return [a, [cx, y], q]
-        # 6 points: the middle segment starts at the turn, so its centre can be at most mid-run
-        cx = min(cx, (a[0] + q[0]) / 2 - 3) if d > 0 else max(cx, (a[0] + q[0]) / 2 + 3)
-        c = 2 * cx - a[0]
-        if d * (c - a[0]) <= 2 or d * (q[0] - c) < 5:
+        # 7 points: the label sits on the middle point; the two after it stay under the label, so the
+        # final segment runs from there to the target and is long enough for a full-size arrowhead
+        if d * (cx - a[0]) <= 2 or d * (q[0] - cx) <= 4:
             return pts
-        return [pts[0], pts[1], a, [c, y], [(c + q[0]) / 2, y], q]
+        return [pts[0], pts[1], a, [cx, y], [cx + d, y], [cx + 2 * d, y], q]
 
     def _polyline(self, e: _Edge):
         p, q = list(e.ends[0]), list(e.ends[1])
@@ -1638,6 +1664,10 @@ class _Builder:
                     continue
                 if any(_segment_hits(a, b, _expand(self.slot_abs(nid), 4)) for a, b in segs):
                     self.warnings.append(f"edge {e.idx} ({e.src} -> {e.dst}) crosses node '{nid}'")
+            (x0, y0), (x1, y1) = e.points[-2], e.points[-1]
+            if (run := math.hypot(x1 - x0, y1 - y0)) < ARROWHEAD:
+                self.warnings.append(f"edge {e.idx} ({e.src} -> {e.dst}) ends in a {run:.0f}px segment: "
+                                     "its arrowhead shrinks")  # fmt: skip
             if e.label_box:
                 for nid in order:
                     if nid not in ends and _overlaps(e.label_box, self.slot_abs(nid)):

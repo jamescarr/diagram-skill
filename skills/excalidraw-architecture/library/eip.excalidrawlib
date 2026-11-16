@@ -16332,6 +16332,70 @@
       "name": "Competing Consumers",
       "elements": [
         {
+          "id": "lib:badge-competing:s2",
+          "type": "rectangle",
+          "x": 12,
+          "y": 12,
+          "width": 180,
+          "height": 72,
+          "angle": 0,
+          "strokeColor": "#1e1e1e",
+          "backgroundColor": "#fff3bf",
+          "fillStyle": "solid",
+          "strokeWidth": 2,
+          "strokeStyle": "solid",
+          "roughness": 1,
+          "opacity": 100,
+          "groupIds": [
+            "lib:badge-competing"
+          ],
+          "frameId": null,
+          "index": null,
+          "roundness": {
+            "type": 3
+          },
+          "seed": 662335605,
+          "version": 1,
+          "versionNonce": 662335605,
+          "isDeleted": false,
+          "boundElements": [],
+          "updated": 1,
+          "link": null,
+          "locked": false
+        },
+        {
+          "id": "lib:badge-competing:s1",
+          "type": "rectangle",
+          "x": 6,
+          "y": 6,
+          "width": 180,
+          "height": 72,
+          "angle": 0,
+          "strokeColor": "#1e1e1e",
+          "backgroundColor": "#fff3bf",
+          "fillStyle": "solid",
+          "strokeWidth": 2,
+          "strokeStyle": "solid",
+          "roughness": 1,
+          "opacity": 100,
+          "groupIds": [
+            "lib:badge-competing"
+          ],
+          "frameId": null,
+          "index": null,
+          "roundness": {
+            "type": 3
+          },
+          "seed": 1047732687,
+          "version": 1,
+          "versionNonce": 1047732687,
+          "isDeleted": false,
+          "boundElements": [],
+          "updated": 1,
+          "link": null,
+          "locked": false
+        },
+        {
           "id": "lib:badge-competing",
           "type": "rectangle",
           "x": 0,

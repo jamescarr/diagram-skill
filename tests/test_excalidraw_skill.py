@@ -166,6 +166,70 @@ def test_shadow_sits_under_channel():
     assert len(routes) == 1 and routes[0]["strokeStyle"] == "dashed"
 
 
+def test_labelled_arrows_keep_full_arrowheads():
+    # a fan-out: one labelled arrow turns through the gap (ortho), one runs straight, a tap adds a band
+    spec = {
+        "nodes": [
+            {"id": "svc", "kind": "service", "label": "Order Service"},
+            {"id": "ch", "kind": "pubsub-channel", "label": "orders.placed"},
+            {"id": "billing", "kind": "service", "label": "Billing"},
+            {"id": "shipping", "kind": "service", "label": "Shipping"},
+            {"id": "audit", "kind": "message-store", "label": "Audit"},
+        ],
+        "edges": [
+            {"from": "svc", "to": "ch", "type": "event", "message": "OrderPlaced"},
+            {"from": "ch", "to": "billing", "type": "event", "message": "OrderPlaced"},
+            {"from": "ch", "to": "shipping", "type": "event", "message": "OrderPlaced"},
+            {"from": "ch", "to": "audit", "kind": "tap"},
+        ],
+    }
+    scene, warnings = eip.build(spec)
+    assert warnings == []
+    by_id = _by_id(scene)
+    arrows = [el for el in scene["elements"] if el["type"] == "arrow" and el["id"].startswith("e:")]
+    assert any(len(a["points"]) > 3 and f"{a['id']}:lbl" in by_id for a in arrows)  # the ortho case is covered
+    for a in arrows:
+        (x0, y0), (x1, y1) = a["points"][-2:]
+        # Excalidraw draws min(ARROWHEAD, final segment / 2): anything shorter shrinks the head
+        assert abs(x1 - x0) + abs(y1 - y0) >= 2 * eip.ARROWHEAD, a["id"]
+        label = by_id.get(f"{a['id']}:lbl")
+        if label:
+            assert label["x"] + label["width"] <= a["x"] + x1 - eip.ARROWHEAD, a["id"]
+
+
+def test_competing_consumers_draw_a_stack():
+    badges = {"w1": "competing:1", "w2": "competing:2", "w3": "competing:3", "w12": "competing:12", "w": "competing"}
+    spec = {
+        "nodes": [
+            {"id": "ch", "kind": "p2p-channel", "label": "jobs"},
+            *({"id": n, "kind": "service", "label": "Worker", "badges": [b]} for n, b in badges.items()),
+            {"id": "plain", "kind": "service", "label": "Worker", "badges": ["idempotent"]},
+            {"id": "db", "kind": "datastore", "label": "db"},
+        ],
+        "edges": [{"from": "ch", "to": n} for n in [*badges, "plain"]] + [{"from": "w3", "to": "db", "kind": "data"}],
+    }
+    next(n for n in spec["nodes"] if n["id"] == "w3")["sub"] = "3 pods"
+    scene, warnings = eip.build(spec)
+    assert warnings == []
+    by_id = _by_id(scene)
+    order = [el["id"] for el in scene["elements"]]
+    expected = {"w1": 0, "w2": 1, "w3": 2, "w12": 2, "w": 2, "plain": 0}
+    for node, cards in expected.items():
+        box = by_id[f"n:{node}"]
+        assert sum(i.removeprefix(f"n:{node}:s").isdigit() for i in order if i != f"n:{node}") == cards, node
+        for i in range(1, cards + 1):
+            card = by_id[f"n:{node}:s{i}"]
+            off = i * eip.STACK_STEP
+            assert (card["x"] - box["x"], card["y"] - box["y"]) == (off, off)
+            assert (card["width"], card["height"]) == (box["width"], box["height"])
+            assert order.index(card["id"]) < order.index(box["id"])  # behind the front box
+    w3 = by_id["n:w3"]
+    stack_right, stack_bottom = (w3[k] + w3[d] + 2 * eip.STACK_STEP for k, d in (("x", "width"), ("y", "height")))
+    out = next(el for el in scene["elements"] if el["type"] == "arrow" and el["startBinding"]["elementId"] == "n:w3")
+    assert out["x"] >= stack_right  # leaves from the outer card, not from inside the stack
+    assert by_id["n:w3:sub"]["y"] >= stack_bottom
+
+
 def test_validation_messages():
     spec = {
         "lanes": ["Edge"],
