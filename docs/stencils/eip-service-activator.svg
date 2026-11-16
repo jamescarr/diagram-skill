@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-35 -12 167 114" width="167" height="114">
+<rect x="-35" y="-12" width="167" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="6,32 34,32" stroke="#868e96" stroke-width="2" fill="none"/>
+<polygon points="34,32 23.61,26 23.61,38" fill="#868e96" stroke="#868e96" stroke-width="1"/>
+<polyline points="44,32 70,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polygon points="39,27 44,32 39,37 34,32" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<polygon points="75,27 80,32 75,37 70,32" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48.5" y="73.75">Service Activator</tspan></text>
+</svg>

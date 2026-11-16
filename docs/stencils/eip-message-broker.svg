@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-23 -12 142 114" width="142" height="114">
+<rect x="-23" y="-12" width="142" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="48,26 48,14" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="48,38 48,50" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="38,30 22,22" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="58,30 74,22" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="38,34 22,44" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="58,34 74,44" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<rect x="38" y="26" width="20" height="12" stroke="#1e1e1e" stroke-width="1" fill="#d3f9d8"/>
+<rect x="41" y="6" width="14" height="8" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<rect x="8" y="16" width="14" height="8" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<rect x="74" y="16" width="14" height="8" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<rect x="8" y="42" width="14" height="8" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<rect x="74" y="42" width="14" height="8" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<rect x="41" y="50" width="14" height="8" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48" y="73.75">Message Broker</tspan></text>
+</svg>

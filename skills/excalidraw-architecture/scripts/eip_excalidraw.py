@@ -1943,8 +1943,11 @@ def _svg_el(el, by_id) -> list[str]:
     return []
 
 
-def render_svg(scene: dict) -> str:
-    """Deterministic layout preview: shapes, arrows, text and frames in array order (roughness ignored)."""
+def render_svg(scene: dict, pad: float = 40) -> str:
+    """Deterministic layout preview: shapes, arrows, text and frames in array order (roughness ignored).
+
+    `pad` is the white margin around the content's bounding box.
+    """
     els = [el for el in scene.get("elements", []) if not el.get("isDeleted")]
     by_id = {el["id"]: el for el in els}
     boxes = []
@@ -1952,7 +1955,7 @@ def render_svg(scene: dict) -> str:
         b = _bbox(el)
         boxes.append((b[0], b[1] - FRAME_NAME_H, b[2], b[3]) if el["type"] == "frame" else b)
     x0, y0, x1, y1 = _union(boxes) if boxes else (0, 0, 0, 0)
-    vx, vy, vw, vh = x0 - 40, y0 - 40, x1 - x0 + 80, y1 - y0 + 80
+    vx, vy, vw, vh = x0 - pad, y0 - pad, x1 - x0 + 2 * pad, y1 - y0 + 2 * pad
     out = [
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{_n(vx)} {_n(vy)} {_n(vw)} {_n(vh)}" '
         f'width="{_n(vw)}" height="{_n(vh)}">',

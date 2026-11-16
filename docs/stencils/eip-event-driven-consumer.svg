@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 -12 125 131" width="125" height="131">
+<rect x="-14" y="-12" width="125" height="131" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="6,32 40,32" stroke="#868e96" stroke-width="2" fill="none"/>
+<polygon points="40,32 29.61,26 29.61,38" fill="#868e96" stroke="#868e96" stroke-width="1"/>
+<polyline points="40,32 70,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polygon points="75,27 80,32 75,37 70,32" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48.5" y="73.75">Event-Driven</tspan><tspan x="48.5" y="91.25">Consumer</tspan></text>
+</svg>

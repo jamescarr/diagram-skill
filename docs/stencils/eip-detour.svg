@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 120 114" width="120" height="114">
+<rect x="-12" y="-12" width="120" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="12,32 40,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="40,32 84,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="40,32 62,14" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="62,14 84,14" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<ellipse cx="40" cy="32" rx="3" ry="3" stroke="#1e1e1e" stroke-width="1" fill="#1e1e1e"/>
+<rect x="58" y="44" width="20" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48.5" y="73.75">Detour</tspan></text>
+</svg>

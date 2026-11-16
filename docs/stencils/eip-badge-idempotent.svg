@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -21 204 105" width="204" height="105">
+<rect x="-12" y="-21" width="204" height="105" fill="#ffffff"/>
+<rect x="0" y="0" width="180" height="72" rx="18" stroke="#1e1e1e" stroke-width="2" fill="#fff3bf"/>
+<text font-size="16" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="90" y="28">Service</tspan></text>
+<rect x="12" y="-9" width="78" height="18" rx="4.5" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<text font-size="11" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="51" y="-5.62">idempotent</tspan></text>
+</svg>

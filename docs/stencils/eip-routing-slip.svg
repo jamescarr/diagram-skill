@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-14 -12 125 114" width="125" height="114">
+<rect x="-14" y="-12" width="125" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="22,32 32,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="44,32 54,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="66,32 76,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<rect x="10" y="26" width="12" height="12" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="32" y="26" width="12" height="12" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="54" y="26" width="12" height="12" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="76" y="26" width="12" height="12" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48.5" y="73.75">Routing Slip</tspan></text>
+</svg>

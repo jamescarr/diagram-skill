@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-44 -12 184 114" width="184" height="114">
+<rect x="-44" y="-12" width="184" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<polyline points="6,32 44,32" stroke="#868e96" stroke-width="2" fill="none"/>
+<polygon points="44,32 33.61,26 33.61,38" fill="#868e96" stroke="#868e96" stroke-width="1"/>
+<rect x="56" y="22" width="20" height="20" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<ellipse cx="12" cy="12" rx="8" ry="8" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<text font-size="11" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="12.5" y="6.38">1</tspan></text>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48" y="73.75">Idempotent Receiver</tspan></text>
+</svg>

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-31 -12 159 114" width="159" height="114">
+<rect x="-31" y="-12" width="159" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<rect x="30" y="19" width="36" height="26" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<polyline points="30,19 48,34" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<polyline points="66,19 48,34" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48.5" y="73.75">Envelope Wrapper</tspan></text>
+</svg>

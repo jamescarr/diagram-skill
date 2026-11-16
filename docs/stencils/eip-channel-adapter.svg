@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-27 -12 150 114" width="150" height="114">
+<rect x="-27" y="-12" width="150" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<rect x="6" y="10" width="20" height="44" stroke="#1e1e1e" stroke-width="1" fill="#ffec99"/>
+<polygon points="32,10 52,16 52,48 32,54 32,10" stroke="#1e1e1e" stroke-width="1" fill="#c5f6fa"/>
+<polyline points="56,32 72,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<line x1="56" y1="32" x2="64.66" y2="37" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="56" y1="32" x2="64.66" y2="27" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="72" y1="32" x2="63.34" y2="27" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="72" y1="32" x2="63.34" y2="37" stroke="#1e1e1e" stroke-width="1"/>
+<rect x="76" y="24" width="14" height="16" stroke="#1e1e1e" stroke-width="1" fill="#adb5bd"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48" y="73.75">Channel Adapter</tspan></text>
+</svg>

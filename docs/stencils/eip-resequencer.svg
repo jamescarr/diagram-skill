@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -12 120 114" width="120" height="114">
+<rect x="-12" y="-12" width="120" height="114" fill="#ffffff"/>
+<rect x="0" y="0" width="96" height="64" stroke="#1e1e1e" stroke-width="2" fill="#d3f9d8"/>
+<rect x="12" y="14" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="26" y="30" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="14" y="44" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<polyline points="40,32 54,32" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<line x1="54" y1="32" x2="45.34" y2="27" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="54" y1="32" x2="45.34" y2="37" stroke="#1e1e1e" stroke-width="1"/>
+<rect x="58" y="27" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="70" y="27" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<rect x="82" y="27" width="10" height="10" stroke="#1e1e1e" stroke-width="1" fill="#ffffff"/>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="48.5" y="73.75">Resequencer</tspan></text>
+</svg>

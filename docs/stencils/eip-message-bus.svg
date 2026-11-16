@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-12 -28 204 116" width="204" height="116">
+<rect x="-12" y="-28" width="204" height="116" fill="#ffffff"/>
+<rect x="0" y="0" width="168" height="36" stroke="#1e1e1e" stroke-width="2" fill="#dee2e6"/>
+<ellipse cx="168" cy="18" rx="12" ry="18" stroke="#1e1e1e" stroke-width="2" fill="#f1f3f5"/>
+<polyline points="30,-16 30,-2" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<line x1="30" y1="-16" x2="25" y2="-7.34" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="30" y1="-16" x2="35" y2="-7.34" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="30" y1="-2" x2="35" y2="-10.66" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="30" y1="-2" x2="25" y2="-10.66" stroke="#1e1e1e" stroke-width="1"/>
+<polyline points="90,-16 90,-2" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<line x1="90" y1="-16" x2="85" y2="-7.34" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="90" y1="-16" x2="95" y2="-7.34" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="90" y1="-2" x2="95" y2="-10.66" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="90" y1="-2" x2="85" y2="-10.66" stroke="#1e1e1e" stroke-width="1"/>
+<polyline points="150,-16 150,-2" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<line x1="150" y1="-16" x2="145" y2="-7.34" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="150" y1="-16" x2="155" y2="-7.34" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="150" y1="-2" x2="155" y2="-10.66" stroke="#1e1e1e" stroke-width="1"/>
+<line x1="150" y1="-2" x2="145" y2="-10.66" stroke="#1e1e1e" stroke-width="1"/>
+<polyline points="90,38 90,52" stroke="#1e1e1e" stroke-width="1" fill="none"/>
+<text font-size="11" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="start" dominant-baseline="hanging"><tspan x="10" y="12.38">BUS</tspan></text>
+<text font-size="14" font-family="Virgil, 'Segoe Print', 'Comic Sans MS', cursive" fill="#1e1e1e" text-anchor="middle" dominant-baseline="hanging"><tspan x="90.5" y="59.75">Message Bus</tspan></text>
+</svg>

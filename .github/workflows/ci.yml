@@ -16,4 +16,5 @@ jobs:
       - run: uv sync
       - run: uv run agentskills validate skills/excalidraw-architecture
       - run: python3 skills/excalidraw-architecture/scripts/eip_excalidraw.py build skills/excalidraw-architecture/examples/order-flow.spec.json --check --strict
+      - run: python3 tools/stencils.py --check
       - run: uv run pytest -q
